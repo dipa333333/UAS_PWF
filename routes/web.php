@@ -10,6 +10,8 @@ use App\Http\Controllers\PublicMenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\TableController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,9 @@ Route::post('/login', function (Request $request) {
     ])->onlyInput('email');
 });
 
+// [FIX] Route ini yang tadi hilang/error
+Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
 
 // === 3. ROUTE ADMIN (WAJIB LOGIN) ===
 Route::middleware(['auth'])->group(function () {
@@ -70,6 +75,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Orders Management
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+    // Tables Management
+    Route::resource('tables', TableController::class);
+
+    // Route Update Status Reservasi (Admin)
+    Route::patch('/reservations/{reservation}', [ReservationController::class, 'updateStatus'])->name('reservations.update');
 
     // Logout
     Route::post('/logout', function (Request $request) {

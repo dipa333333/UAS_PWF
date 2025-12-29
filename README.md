@@ -111,7 +111,7 @@ DB_PASSWORD=
 php artisan key:generate
 php artisan migrate
 ```
-
+  
 ### 5️⃣ Storage Link 
 Agar gambar menu tampil:
 ```bash

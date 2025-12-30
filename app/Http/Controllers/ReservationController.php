@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class ReservationController extends Controller
 {
     // === PUBLIC: KIRIM RESERVASI ===
+    // app/Http/Controllers/ReservationController.php
+
     public function store(Request $request)
     {
         $request->validate([
@@ -15,17 +17,29 @@ class ReservationController extends Controller
             'phone' => 'required',
             'pax' => 'required|integer|min:1',
             'reservation_time' => 'required',
+            'status' => 'nullable|string',
+            'table_id' => 'nullable|exists:tables,id',
         ]);
 
+        // 1. Tentukan status
+        // Jika ada input 'status' (dari admin), pakai itu. Jika tidak, default 'pending'.
+        $status = $request->status ?? 'pending';
+
         Reservation::create([
+            'table_id' => $request->table_id, 
             'name' => $request->name,
             'phone' => $request->phone,
             'pax' => $request->pax,
             'reservation_time' => $request->reservation_time,
-            'status' => 'pending',
+            'status' => $status,
         ]);
 
-        return back()->with('success', 'Reservasi berhasil dikirim.');
+        // 2. Bedakan pesan notifikasi
+        $message = ($status === 'confirmed')
+            ? 'Reservasi berhasil dibuat dan disetujui.'
+            : 'Reservasi berhasil dikirim. Mohon tunggu konfirmasi.';
+
+        return back()->with('success', $message);
     }
 
     // === ADMIN UPDATE STATUS ===

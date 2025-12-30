@@ -73,7 +73,7 @@
     </div>
 
     <div class="p-4 bg-gray-50">
-        {{ $feedbacks->links() }}
+        {{ $feedbacks->links('partials.pagination') }}
     </div>
 </div>
 @endsection

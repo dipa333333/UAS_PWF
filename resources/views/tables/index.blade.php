@@ -3,7 +3,6 @@
 @section('content')
 <div x-data="{ open:false, tableId:null }" class="space-y-8">
 
-    <!-- HEADER -->
     <div class="flex flex-wrap items-center justify-between gap-4">
         <div>
             <h2 class="text-3xl font-bold text-slate-800">
@@ -31,9 +30,16 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        <!-- ================= MEJA ================= -->
         <div class="lg:col-span-2">
             <h3 class="text-lg font-semibold mb-4 text-slate-700">Denah Meja</h3>
+
+            <a href="{{ route('tables.create') }}"
+            class="px-4 py-2 bg-slate-800 text-white text-sm rounded-lg hover:bg-slate-900 transition flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                Tambah Meja
+            </a>
 
             <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
                 @foreach($tables as $table)
@@ -89,7 +95,6 @@
             </div>
         </div>
 
-        <!-- ================= RESERVASI ================= -->
         <div>
             <h3 class="text-lg font-semibold mb-4 text-slate-700">
                 Permintaan Reservasi
@@ -160,32 +165,32 @@
                     @endforelse
                 </ul>
 
-                <!-- PAGINATION -->
                 <div class="p-4 border-t bg-slate-50">
-                    {{ $reservations->links('pagination::tailwind') }}
+                    {{ $reservations->links('partials.pagination') }}
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL -->
     <div x-show="open" x-cloak
         class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
 
         <div @click.away="open=false"
              class="bg-white w-full max-w-md rounded-2xl p-6">
 
-            <h3 class="text-lg font-semibold mb-4">Tambah Reservasi</h3>
+            <h3 class="text-lg font-semibold mb-4">Tambah Reservasi (Admin)</h3>
 
             <form method="POST" action="{{ route('reservations.store') }}" class="space-y-3">
                 @csrf
 
                 <input type="hidden" name="table_id" :value="tableId">
 
-                <input name="name" placeholder="Nama"
+                <input type="hidden" name="status" value="confirmed">
+
+                <input name="name" placeholder="Nama Tamu"
                        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-orange-200" required>
 
-                <input name="phone" placeholder="No WhatsApp"
+                <input name="phone" placeholder="No WhatsApp (08xxx)"
                        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-orange-200" required>
 
                 <input type="number" name="pax" placeholder="Jumlah orang"
@@ -202,7 +207,7 @@
 
                     <button
                         class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition">
-                        Simpan
+                        Simpan & Konfirmasi
                     </button>
                 </div>
             </form>

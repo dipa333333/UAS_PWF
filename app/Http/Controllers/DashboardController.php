@@ -27,7 +27,7 @@ class DashboardController extends Controller
         // 5.Tambahkan fitur "Menu Hampir Habis" (Misal stok < 5)
         $lowStockMenus = Menu::where('stock', '>', 0)
                              ->where('stock', '<', 5)
-                             ->limit(5)
+                             ->orderBy('stock', 'asc')
                              ->get();
 
         return view('dashboard', compact(

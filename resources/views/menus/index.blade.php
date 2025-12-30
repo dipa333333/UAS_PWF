@@ -36,7 +36,7 @@
                     <th class="p-4 border-b">Foto</th>
                     <th class="p-4 border-b">Nama Menu</th>
                     <th class="p-4 border-b">Kategori</th>
-                    <th class="p-4 border-b">Harga</th> 
+                    <th class="p-4 border-b">Harga</th>
                     <th class="p-4 border-b text-center">Stok</th>
                     <th class="p-4 border-b text-center">Aksi</th>
                 </tr>
@@ -124,7 +124,7 @@
 
     <!-- Pagination -->
     <div class="mt-4">
-        {{ $menus->links() }}
+        {{ $menus->links('partials.pagination') }}
     </div>
 </div>
 @endsection

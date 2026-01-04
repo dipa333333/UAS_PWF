@@ -12,6 +12,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Route Update Status Reservasi (Admin)
     Route::patch('/reservations/{reservation}', [ReservationController::class, 'updateStatus'])->name('reservations.update');
+
+    // Reports
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/export-pdf', [ReportController::class, 'exportPdf'])->name('reports.export_pdf');
+
+    // Route About Page
+    Route::get('/about', function () {
+        return view('public.about');
+    })->name('about');
 
     // Logout
     Route::post('/logout', function (Request $request) {

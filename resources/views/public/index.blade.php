@@ -73,20 +73,32 @@
                     </div>
 
                     <!-- Tombol Desktop (Reservasi & Admin) -->
-                    <div class="hidden md:flex gap-2">
-                        <!-- Tombol Reservasi Desktop - FITUR BARU -->
-                        <button
-                            type="button"
-                            @click.prevent="openReservation = true"
-                            class="px-4 py-2.5 bg-orange-500 text-white rounded-xl text-sm font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-200">
+                    <div class="flex items-center gap-2">
+
+                        <button type="button"
+                                @click.prevent="openReservation = true"
+                                class="px-4 py-2.5 bg-orange-500 text-white rounded-xl text-sm font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-200">
                             Reservasi Meja
                         </button>
 
-
-                        <a href="{{ route('login') }}" class="flex items-center gap-2 px-4 py-2.5 bg-gray-900 text-white rounded-xl text-sm font-bold hover:bg-gray-800 transition shadow-lg shadow-gray-200">
+                        <a href="{{ route('login') }}"
+                           class="flex items-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-bold hover:bg-slate-800 transition shadow-lg shadow-slate-200">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                            Admin
+                            <span class="hidden sm:inline">Admin</span>
                         </a>
+
+                        <a href="{{ route('about') }}"
+                           class="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-xl text-sm font-bold hover:bg-slate-50 transition shadow-sm">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+
+                            <span class="hidden sm:inline">Tentang</span>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -148,7 +160,7 @@
                         <span class="block">
                             <span x-text="text"></span><span class="animate-pulse text-orange-500">😋|</span>
                         </span>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">Pesan Sekarang!</span> 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">Pesan Sekarang!</span>
                     </h2>
                     <p class="text-gray-300 text-sm md:text-base max-w-lg mt-2">Nikmati hidangan spesial chef kami. Pesan langsung dari sini, pesanan otomatis terhubung ke WhatsApp.</p>
                 </div>

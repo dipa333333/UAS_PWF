@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
+<html lang="id" class="scroll-smooth"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Resto Digital</title>
+    <title>Tentang Kami - RestoApp</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] } } }
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    },
+                    animation: {
+                        'blob': "blob 7s infinite"
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" }
+                        }
+                    }
+                }
+            }
         }
     </script>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script
+        src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js"
+        type="module"
+    ></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -33,7 +54,12 @@
     </script>
 </head>
 
-<body class="bg-gray-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-800 dark:text-white transition-colors duration-300 relative overflow-x-hidden min-h-screen">
+
+    <div class="fixed top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-orange-200/40 dark:bg-orange-900/20 rounded-full blur-3xl -z-10 animate-blob pointer-events-none"></div>
+    <div class="fixed top-1/2 right-0 translate-x-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-red-200/30 dark:bg-red-900/20 rounded-full blur-3xl -z-10 animate-blob animation-delay-2000 pointer-events-none"></div>
+    <div class="fixed bottom-0 left-0 -translate-x-1/3 translate-y-1/3 w-[400px] h-[400px] bg-yellow-100/40 dark:bg-yellow-900/20 rounded-full blur-3xl -z-10 animate-blob animation-delay-4000 pointer-events-none"></div>
+
 
     <div class="fixed top-0 inset-x-0 z-40 glass-nav border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -61,16 +87,12 @@
                 this.counts.forEach(c => {
                     let start = 0;
                     let end = c.target;
-                    let duration = 2000; // 2 detik
+                    let duration = 2000;
                     let range = end - start;
                     let increment = end > start ? 1 : -1;
                     let stepTime = Math.abs(Math.floor(duration / range));
 
-                    // Khusus tahun berdiri agar tidak terlalu lama
-                    if(c.label === 'Berdiri') {
-                        c.current = 2023;
-                        return;
-                    }
+                    if(c.label === 'Berdiri') { c.current = 2023; return; }
 
                     let timer = setInterval(() => {
                         start += increment;
@@ -84,26 +106,31 @@
          class="pt-24 pb-12 max-w-5xl mx-auto px-4 transition-all duration-700"
          :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'">
 
-        <div class="text-center mb-12 md:mb-16">
-            <div class="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
-                <div class="absolute inset-0 bg-gradient-to-tr from-orange-400 to-red-500 rounded-full blur-2xl opacity-60 animate-pulse"></div>
-                <div class="relative w-full h-full bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-6xl shadow-2xl border-4 border-white dark:border-slate-700">
-                    👨‍🍳
+        <div class="text-center mb-12 md:mb-16 relative z-10">
+            <div class="relative w-32 h-32 md:w-48 md:h-48 mx-auto mb-8">
+                <div class="absolute inset-0 bg-gradient-to-tr from-orange-400 to-red-500 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+                <div class="relative w-full h-full bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-2xl border-4 border-white dark:border-slate-700 overflow-hidden p-2">
+                    <dotlottie-wc
+                        src="https://lottie.host/78fc8dca-e627-452b-9841-6f75e3f7226d/2mYZAgcwCf.lottie"
+                        style="width: 100%; height: 100%;"
+                        loop
+                        autoplay>
+                    ></dotlottie-wc>
                 </div>
             </div>
 
-            <h1 class="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 mb-4">
-                Resto Digital
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600 dark:from-orange-400 dark:to-red-400 mb-4">
+                RestoApp
             </h1>
-            <p class="text-slate-500 dark:text-slate-400 text-base md:text-lg font-medium max-w-2xl mx-auto">
+            <p class="text-slate-500 dark:text-slate-400 text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
                 Menghadirkan cita rasa bintang lima dengan harga kaki lima. <br class="hidden md:block"> Nikmati pengalaman kuliner modern tanpa antre.
             </p>
         </div>
 
-        <div class="grid grid-cols-3 gap-4 md:gap-8 mb-16 max-w-3xl mx-auto">
+        <div class="grid grid-cols-3 gap-4 md:gap-8 mb-16 max-w-3xl mx-auto relative z-10">
             <template x-for="c in counts">
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 text-center hover:-translate-y-1 transition duration-300">
-                    <div class="text-3xl md:text-4xl font-bold text-orange-500 mb-1">
+                <div class="glass-nav dark:bg-slate-800/80 p-6 rounded-2xl shadow-sm border border-slate-100/50 dark:border-slate-700/50 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="text-3xl md:text-4xl font-bold text-orange-500 mb-1 tracking-tight">
                         <span x-text="c.current"></span><span x-text="c.suffix"></span>
                     </div>
                     <div class="text-[10px] md:text-xs text-slate-400 uppercase tracking-widest font-bold" x-text="c.label"></div>
@@ -111,15 +138,15 @@
             </template>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16">
-            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 h-full">
-                <h2 class="text-xl font-bold flex items-center gap-3 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16 relative z-10">
+            <div class="glass-nav dark:bg-slate-800/90 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100/50 dark:border-slate-700/50 h-full">
+                <h2 class="text-xl font-bold tracking-tight flex items-center gap-3 mb-6">
                     <span class="bg-orange-100 dark:bg-orange-900/30 text-orange-600 p-2 rounded-xl">🚀</span>
                     Cerita Kami
                 </h2>
                 <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base text-justify">
                     <p>
-                        Dimulai dari sebuah garasi kecil pada tahun 2023, <strong>Resto Digital</strong> tumbuh menjadi tempat favorit warga lokal. Kami melihat banyak orang kehabisan waktu istirahat hanya karena mengantre makanan.
+                        Dimulai dari sebuah garasi kecil pada tahun 2023, <strong>RestoApp</strong> tumbuh menjadi tempat favorit warga lokal. Kami melihat banyak orang kehabisan waktu istirahat hanya karena mengantre makanan.
                     </p>
                     <p>
                         Oleh karena itu, kami menggabungkan teknologi pemesanan digital dengan keahlian memasak tradisional. Hasilnya? Makanan enak yang datang cepat, tanpa drama antrean.
@@ -127,8 +154,8 @@
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700 h-full flex flex-col justify-center">
-                <h2 class="text-xl font-bold flex items-center gap-3 mb-6">
+            <div class="glass-nav dark:bg-slate-800/90 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100/50 dark:border-slate-700/50 h-full flex flex-col justify-center">
+                 <h2 class="text-xl font-bold tracking-tight flex items-center gap-3 mb-6">
                     <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 p-2 rounded-xl">💎</span>
                     Kenapa Kami?
                 </h2>
@@ -136,21 +163,21 @@
                     <li class="flex items-start gap-4">
                         <div class="mt-1 w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm flex-shrink-0">✓</div>
                         <div>
-                            <strong class="block text-slate-800 dark:text-white mb-1 text-sm md:text-base">Bahan Segar Harian</strong>
+                            <strong class="block text-slate-800 dark:text-white mb-1 text-sm md:text-base tracking-tight">Bahan Segar Harian</strong>
                             <span class="text-xs md:text-sm text-slate-500 dark:text-slate-400">Kami belanja langsung ke petani lokal setiap subuh.</span>
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
                         <div class="mt-1 w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm flex-shrink-0">✓</div>
                         <div>
-                            <strong class="block text-slate-800 dark:text-white mb-1 text-sm md:text-base">Tanpa MSG Berlebih</strong>
+                            <strong class="block text-slate-800 dark:text-white mb-1 text-sm md:text-base tracking-tight">Tanpa MSG Berlebih</strong>
                             <span class="text-xs md:text-sm text-slate-500 dark:text-slate-400">Rasa gurih alami dari racikan rempah rahasia.</span>
                         </div>
                     </li>
                     <li class="flex items-start gap-4">
                         <div class="mt-1 w-6 h-6 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-sm flex-shrink-0">✓</div>
                         <div>
-                            <strong class="block text-slate-800 dark:text-white mb-1 text-sm md:text-base">WiFi Super Ngebut</strong>
+                            <strong class="block text-slate-800 dark:text-white mb-1 text-sm md:text-base tracking-tight">WiFi Super Ngebut</strong>
                             <span class="text-xs md:text-sm text-slate-500 dark:text-slate-400">Tempat paling nyaman buat WFC atau nugas.</span>
                         </div>
                     </li>
@@ -158,59 +185,60 @@
             </div>
         </div>
 
-        <div class="mb-16 px-2">
-            <h2 class="font-bold text-2xl mb-8 text-center">Suasana Resto</h2>
+        <div class="mb-16 px-2 relative z-10">
+            <h2 class="font-bold text-2xl tracking-tight mb-8 text-center">Suasana Resto</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden shadow-sm group">
-                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="aspect-square rounded-2xl bg-slate-200 dark:bg-slate-700 overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden shadow-sm group">
-                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="aspect-square rounded-2xl bg-slate-200 dark:bg-slate-700 overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=500&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
-                <div class="aspect-square rounded-2xl bg-slate-200 overflow-hidden shadow-sm group">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="aspect-square rounded-2xl bg-slate-200 dark:bg-slate-700 overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
             </div>
         </div>
 
-        <div class="mb-16">
-            <h2 class="font-bold text-xl mb-6 px-2 md:text-center">Tim Inti Dibalik Layar</h2>
+        <div class="mb-16 relative z-10">
+             <h2 class="font-bold text-xl tracking-tight mb-6 px-2 md:text-center">Tim Inti Dibalik Layar</h2>
             <div class="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto hide-scroll px-2 md:px-0 pb-4">
-                <div class="flex-shrink-0 w-36 md:w-auto bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700 text-center shadow-sm hover:shadow-md transition">
-                    <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=random&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md">
-                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base">Budi Santoso</h3>
-                    <p class="text-[10px] md:text-xs text-slate-500 mt-1">Head Chef</p>
+                <div class="flex-shrink-0 w-36 md:w-auto glass-nav dark:bg-slate-800/90 p-5 rounded-2xl border border-slate-100/50 dark:border-slate-700/50 text-center shadow-sm hover:shadow-md transition hover:-translate-y-1">
+                    <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=F97316&color=fff&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md ring-2 ring-orange-100 dark:ring-orange-900">
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base tracking-tight">Budi Santoso</h3>
+                    <p class="text-[10px] md:text-xs text-orange-500 font-medium mt-1">Head Chef</p>
                 </div>
-                <div class="flex-shrink-0 w-36 md:w-auto bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700 text-center shadow-sm hover:shadow-md transition">
-                    <img src="https://ui-avatars.com/api/?name=Agung+Dipa&background=random&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md">
-                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base">Agung Dipa</h3>
-                    <p class="text-[10px] md:text-xs text-slate-500 mt-1">Manager</p>
+                <div class="flex-shrink-0 w-36 md:w-auto glass-nav dark:bg-slate-800/90 p-5 rounded-2xl border border-slate-100/50 dark:border-slate-700/50 text-center shadow-sm hover:shadow-md transition hover:-translate-y-1">
+                    <img src="https://ui-avatars.com/api/?name=Agung+Dipa&background=3B82F6&color=fff&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md ring-2 ring-blue-100 dark:ring-blue-900">
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base tracking-tight">Agung Dipa</h3>
+                    <p class="text-[10px] md:text-xs text-blue-500 font-medium mt-1">Manager</p>
                 </div>
-                <div class="flex-shrink-0 w-36 md:w-auto bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700 text-center shadow-sm hover:shadow-md transition">
-                    <img src="https://ui-avatars.com/api/?name=Riko+Pratama&background=random&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md">
-                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base">Riko Pratama</h3>
-                    <p class="text-[10px] md:text-xs text-slate-500 mt-1">Barista</p>
+                <div class="flex-shrink-0 w-36 md:w-auto glass-nav dark:bg-slate-800/90 p-5 rounded-2xl border border-slate-100/50 dark:border-slate-700/50 text-center shadow-sm hover:shadow-md transition hover:-translate-y-1">
+                    <img src="https://ui-avatars.com/api/?name=Riko+Pratama&background=10B981&color=fff&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md ring-2 ring-emerald-100 dark:ring-emerald-900">
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base tracking-tight">Riko Pratama</h3>
+                    <p class="text-[10px] md:text-xs text-emerald-500 font-medium mt-1">Barista</p>
                 </div>
-                <div class="flex-shrink-0 w-36 md:w-auto bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700 text-center shadow-sm hover:shadow-md transition">
-                    <img src="https://ui-avatars.com/api/?name=Dewi+Sartika&background=random&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md">
-                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base">Dewi Sartika</h3>
-                    <p class="text-[10px] md:text-xs text-slate-500 mt-1">Marketing</p>
+                <div class="flex-shrink-0 w-36 md:w-auto glass-nav dark:bg-slate-800/90 p-5 rounded-2xl border border-slate-100/50 dark:border-slate-700/50 text-center shadow-sm hover:shadow-md transition hover:-translate-y-1">
+                    <img src="https://ui-avatars.com/api/?name=Dewi+Sartika&background=8B5CF6&color=fff&size=128" class="w-20 h-20 rounded-full mx-auto mb-3 shadow-md ring-2 ring-purple-100 dark:ring-purple-900">
+                    <h3 class="font-bold text-slate-800 dark:text-white text-sm md:text-base tracking-tight">Dewi Sartika</h3>
+                    <p class="text-[10px] md:text-xs text-purple-500 font-medium mt-1">Marketing</p>
                 </div>
             </div>
         </div>
 
-        <div class="bg-gradient-to-br from-slate-800 to-slate-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden text-center md:text-left">
+        <div class="bg-gradient-to-br from-slate-800 to-slate-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden text-center md:text-left z-20">
             <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-orange-500 opacity-10 rounded-full blur-3xl"></div>
 
             <div class="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
                 <div>
-                    <h2 class="text-2xl font-bold mb-2">Yuk, Mampir Sekarang!</h2>
+                    <h2 class="text-2xl font-bold tracking-tight mb-2">Yuk, Mampir Sekarang!</h2>
                     <p class="text-slate-400 text-sm md:text-base">Kami tunggu kedatanganmu di outlet kami.</p>
 
                     <div class="flex flex-col md:flex-row gap-4 md:gap-8 mt-6 text-sm font-light">
                         <div class="flex items-center justify-center md:justify-start gap-2">
                             <span class="opacity-70">📍</span>
-                            <span>Jl. Makanan Enak No. 123, Jaksel</span>
+                            <span>Jl. Pendidikan No. 123, Denpasar Selatan</span>
                         </div>
                         <div class="flex items-center justify-center md:justify-start gap-2">
                             <span class="opacity-70">⏰</span>
@@ -219,15 +247,15 @@
                     </div>
                 </div>
 
-                <a href="https://maps.app.goo.gl/nq2vhGMY4B8cLZvp8" target="_blank" class="w-full md:w-auto bg-white text-slate-900 hover:bg-orange-50 px-8 py-3 rounded-xl transition font-bold shadow-lg flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+                <a href="https://maps.app.goo.gl/nq2vhGMY4B8cLZvp8" target="_blank" class="w-full md:w-auto bg-white text-slate-900 hover:bg-orange-50 px-8 py-3 rounded-xl transition font-bold shadow-lg flex items-center justify-center gap-2 group">
+                    <svg class="group-hover:-rotate-12 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
                     Petunjuk Arah
                 </a>
             </div>
         </div>
 
-        <div class="text-center text-xs text-slate-400 mt-12">
-            &copy; {{ date('Y') }} Resto Digital. All rights reserved.
+        <div class="text-center text-xs text-slate-400 mt-12 relative z-10">
+            © {{ date('Y') }} RestoApp. All rights reserved.
         </div>
     </div>
 </body>

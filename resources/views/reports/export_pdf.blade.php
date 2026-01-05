@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="header">
-        <h2>LAPORAN KAS RESTO DIGITAL</h2>
+        <h2>LAPORAN KAS RESTO APP</h2>
         <p>Periode: Oktober 2023</p>
     </div>
 

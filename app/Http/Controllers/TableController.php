@@ -12,7 +12,6 @@ class TableController extends Controller
     {
         $tables = Table::orderBy('name')->get();
 
-        // hanya tampilkan reservasi aktif
         $reservations = Reservation::whereIn('status', ['pending', 'confirmed'])
             ->orderBy('created_at', 'desc')
             ->paginate(3);

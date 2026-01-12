@@ -9,7 +9,6 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    // Pastikan 'table_id' tetap ada di sini (ini sudah benar)
     protected $fillable = [
         'name',
         'phone',
@@ -22,9 +21,6 @@ class Reservation extends Model
     protected $casts = [
         'reservation_time' => 'datetime',
     ];
-
-    // --- TAMBAHAN YANG KURANG ---
-    // Fungsi ini agar kita bisa memanggil $reservation->table->name
     public function table()
     {
         return $this->belongsTo(Table::class);

@@ -11,7 +11,6 @@ class Table extends Model
 
     protected $fillable = ['name', 'capacity', 'status'];
 
-    // Helper untuk warna status (Badge Tailwind)
     public function getStatusColorAttribute()
     {
         return match($this->status) {

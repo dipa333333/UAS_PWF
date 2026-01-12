@@ -13,12 +13,10 @@ class PublicMenuController extends Controller
         $categoryName = $request->query('category');
         $search = $request->query('search');
 
-        // Ambil semua kategori untuk tab filter di atas
         $categories = Category::all();
 
-        // Query Menu
         $menus = Menu::with('category')
-            ->where('stock', '>', 0) 
+            ->where('stock', '>', 0)
 
             // Filter Kategori
             ->when($categoryName, function($q) use ($categoryName) {

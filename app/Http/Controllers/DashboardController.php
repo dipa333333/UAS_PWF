@@ -13,18 +13,18 @@ class DashboardController extends Controller
         // 1. Hitung Total Menu
         $totalMenus = Menu::count();
 
-        // 2. Hitung Menu Tersedia (LOGIKA BARU: Stok > 0)
+        // 2. Hitung Menu Tersedia
         $availableMenus = Menu::where('stock', '>', 0)->count();
 
-        // 3. Hitung Menu Habis (LOGIKA BARU: Stok <= 0)
+        // 3. Hitung Menu Habis
         $soldOutMenus = Menu::where('stock', '<=', 0)->count();
 
-        // 4. Data untuk Grafik (Jumlah Menu per Kategori)
+        // 4. Data untuk Grafik 
         $categories = Category::withCount('menus')->get();
         $chartLabels = $categories->pluck('name');
         $chartData = $categories->pluck('menus_count');
 
-        // 5.Tambahkan fitur "Menu Hampir Habis" (Misal stok < 5)
+        // 5.Tambahkan fitur "Menu Hampir Habis"
         $lowStockMenus = Menu::where('stock', '>', 0)
                              ->where('stock', '<', 5)
                              ->orderBy('stock', 'asc')

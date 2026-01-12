@@ -25,7 +25,7 @@
 <body class="bg-gray-50 pb-32">
 <div x-data="shop()" x-init="initCart()">
 
-    <!-- NOTIFIKASI SUKSES (POPUP ATAS) -->
+    <!-- NOTIFIKASI SUKSES -->
     @if(session('success'))
         <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 5000)"
              class="fixed top-4 left-4 right-4 z-[60] bg-green-500 text-white px-6 py-4 rounded-xl shadow-xl flex items-center justify-between animate-bounce">
@@ -34,7 +34,7 @@
         </div>
     @endif
 
-    <!-- 1. HEADER (Sticky & Glassmorphism) -->
+    <!-- 1. HEADER  -->
     <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md shadow-[0_1px_10px_rgba(0,0,0,0.05)] border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between py-3 md:py-4 gap-4">
@@ -46,7 +46,7 @@
                         <h1 class="text-2xl font-extrabold text-gray-800 tracking-tight">Resto<span class="text-orange-600">App</span></h1>
                     </div>
 
-                    <!-- Tombol Reservasi (Mobile) - FITUR BARU -->
+                    <!-- Tombol Reservasi (Mobile) -->
                     <button
                         type="button"
                         @click.prevent="openReservation = true"
@@ -72,7 +72,7 @@
                         </form>
                     </div>
 
-                    <!-- Tombol Desktop (Reservasi & Admin) -->
+                    <!-- Tombol Desktop -->
                     <div class="flex items-center gap-2">
 
                         <button type="button"
@@ -124,7 +124,7 @@
     <!-- MAIN CONTENT -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-        <!-- 2. PROMO BANNER (ANIMASI KETIK DIKEMBALIKAN) -->
+        <!-- 2. PROMO BANNER -->
         @if(!request('search') && !request('category'))
         <div class="mb-8 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 md:p-10 text-white shadow-2xl relative overflow-hidden group">
             <div class="absolute top-0 right-0 -mt-8 -mr-8 w-48 h-48 bg-orange-500 rounded-full opacity-20 blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
@@ -173,7 +173,7 @@
         </div>
         @endif
 
-        <!-- 3. MENU GRID (FLY TO CART DIKEMBALIKAN) -->
+        <!-- 3. MENU GRID -->
         @if(request('search'))
             <p class="mb-6 text-lg font-semibold text-gray-500">Hasil pencarian untuk: <span class="text-gray-900 font-bold">"{{ request('search') }}"</span></p>
         @endif
@@ -258,7 +258,7 @@
             @endforelse
         </div>
 
-        <!-- 4. FEEDBACK SECTION (DIKEMBALIKAN) -->
+        <!-- 4. FEEDBACK SECTION -->
         <div class="mt-16 pt-10 border-t border-gray-200">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div class="md:pr-10">
@@ -492,9 +492,9 @@
             return {
                 cart: [],
                 showModal: false,
-                openReservation: false, // State untuk modal reservasi
+                openReservation: false, 
                 pulse: false,
-                waNumber: '6285739519144', // GANTI NOMOR WA DISINI
+                waNumber: '6285739519144',
 
                 initCart() {
                     if(localStorage.getItem('restoCart')) {

@@ -22,7 +22,7 @@ class MenuController extends Controller
                              });
             })
             ->latest()
-            ->paginate(10); 
+            ->paginate(10);
 
         $menus->appends(['search' => $search]);
 
@@ -50,7 +50,6 @@ class MenuController extends Controller
 
         $data = $request->all();
 
-        // Pastikan discount_price null jika tidak diisi
         if (!$request->filled('discount_price')) {
             $data['discount_price'] = null;
         }

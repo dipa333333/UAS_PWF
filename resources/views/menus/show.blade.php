@@ -91,10 +91,10 @@
                 </div>
             </div>
 
-            <!-- Bagian Bawah: QR Code & Public Link -->
+            <!-- QR Code & Public Link -->
             <div class="mt-8 pt-6 border-t border-gray-100 bg-blue-50/50 -mx-8 -mb-8 px-8 py-6">
                 <div class="flex flex-col sm:flex-row items-center gap-6">
-                    <!-- QR Code -->
+
                     <div class="bg-white p-2 rounded-lg shadow-sm border border-gray-200">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data={{ route('public.show', $menu->id) }}" alt="QR Code" class="w-20 h-20">
                     </div>

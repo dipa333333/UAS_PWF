@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <!-- Statistik Ringkas (Dummy) -->
+    <!-- Statistik Ringkas -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div class="bg-white p-4 rounded-xl shadow-sm border-l-4 border-blue-500 flex justify-between items-center">
             <div>

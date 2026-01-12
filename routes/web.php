@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::get('/menu-digital', [PublicMenuController::class, 'index'])->name('public.index');
 Route::get('/menu-digital/{menu}', [PublicMenuController::class, 'show'])->name('public.show');
 
-// Route untuk kirim Kritik & Saran (Baru)
+// Route untuk kirim Kritik & Saran 
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 
@@ -53,11 +53,11 @@ Route::post('/login', function (Request $request) {
     ])->onlyInput('email');
 });
 
-// [FIX] Route ini yang tadi hilang/error
+// [FIX]
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 
-// === 3. ROUTE ADMIN (WAJIB LOGIN) ===
+// === 3. ROUTE ADMIN ===
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
